@@ -32,7 +32,6 @@ async function get_checksum(release: Release): Promise<string> {
 
   const checksum_response = await fetch(checksum_url)
   const checksum = await checksum_response.text()
-
   if (checksum === null) {
     throw new Error('Checksum not found')
   }
