@@ -24,9 +24,9 @@ async function run(): Promise<void> {
 }
 
 function get_update_script(): UpdateScript {
-  const repo: string = core.getInput('aur-package', {required: true})
+  const repo: string = core.getInput('pkgname', {required: true})
   core.exportVariable('aur-package', repo)
-  core.info(`::export-variable name=aur-package::${repo}`)
+  core.info(`pkgname: ${repo}`)
 
   switch (repo) {
     case 'wine-ge-lutris-bin':

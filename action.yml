@@ -2,7 +2,7 @@ name: 'AUR GitHub Updater'
 description: 'Updates AUR packages that mirror releases from GitHub repositories'
 author: 'KogasaPls'
 inputs:
-  aur-package:
+  pkgname:
     required: true
     description: 'The name of the AUR package'
 outputs:
