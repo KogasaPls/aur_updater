@@ -19,7 +19,7 @@ async function run(): Promise<void> {
 }
 
 function get_update_script(): UpdateScript {
-  const repo: string = core.getInput('INPUT_AUR-PACKAGE')
+  const repo: string = core.getInput('aur-package')
 
   switch (repo) {
     case 'wine-ge-lutris-bin':
