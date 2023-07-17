@@ -1,11 +1,19 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'AUR GitHub Updater'
+description: 'Updates AUR packages that mirror releases from GitHub repositories'
+author: 'KogasaPls'
 inputs:
-  milliseconds: # change this
+  aur-package:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'The name of the AUR package'
+  current-pkgver:
+    required: true
+    description: 'The current pkgver of the AUR package'
+outputs:
+  pkgver:
+    description: 'The new pkgver of the AUR package'
+  updated:
+    description: 'Whether or not the AUR package was updated'
+
 runs:
   using: 'node16'
   main: 'dist/index.js'
