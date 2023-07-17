@@ -4,7 +4,7 @@ import {GloriousEggrollUpdateScript} from './wine-ge/update'
 
 async function run(): Promise<void> {
   try {
-    const repo: string = core.getInput('aur-repo')
+    const repo: string = core.getInput('aur-package')
     const update_script: UpdateScript = get_update_script(repo)
     const version = await update_script.get_latest_version()
 
