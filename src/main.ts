@@ -4,8 +4,7 @@ import {GloriousEggrollUpdateScript} from './wine-ge/update'
 
 async function run(): Promise<void> {
   try {
-    const repo: string = core.getInput('aur-package')
-    const update_script: UpdateScript = get_update_script(repo)
+    const update_script: UpdateScript = get_update_script()
     const version = await update_script.get_latest_version()
 
     core.setOutput('pkgver', version.pkgver)
@@ -19,7 +18,9 @@ async function run(): Promise<void> {
   }
 }
 
-function get_update_script(repo: string): UpdateScript {
+function get_update_script(): UpdateScript {
+  const repo: string = core.getInput('aur-package')
+
   switch (repo) {
     case 'wine-ge-lutris-bin':
       return new GloriousEggrollUpdateScript('wine-ge-custom')
