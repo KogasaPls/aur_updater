@@ -7,19 +7,24 @@ async function run(): Promise<void> {
     const update_script: UpdateScript = get_update_script()
     const version = await update_script.get_latest_version()
 
-    core.setOutput('pkgver', version.pkgver)
-    core.setOutput('release_tag', version.release_tag)
-    core.setOutput('checksum', version.checksum)
     core.info(`::set-output name=pkgver::${version.pkgver}`)
     core.info(`::set-output name=checksum::${version.checksum}`)
     core.info(`::set-output name=release_tag::${version.release_tag}`)
+
+    core.setOutput('pkgver', version.pkgver)
+    core.setOutput('release_tag', version.release_tag)
+    core.setOutput('checksum', version.checksum)
+
+    core.exportVariable('pkgver', version.pkgver)
+    core.exportVariable('release_tag', version.release_tag)
+    core.exportVariable('checksum', version.checksum)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
 }
 
 function get_update_script(): UpdateScript {
-  const repo: string = core.getInput('aur-package')
+  const repo: string = core.getInput('aur-package', {required: true})
 
   switch (repo) {
     case 'wine-ge-lutris-bin':
